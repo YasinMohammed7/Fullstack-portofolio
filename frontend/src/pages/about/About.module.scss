@@ -1,0 +1,126 @@
+.section {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    max-width: 1000px;
+    grid-template-areas:
+        "ig ig ig h1 h1 h1 h1 h1"
+        "ig ig ig ds ds ds ds ds"
+        "ex ex ex ex ed ed ed ed";
+    padding: 50px 20px 0 20px;
+    margin: 0 auto;
+    gap: 20px;
+
+
+    .image {
+        grid-area: ig;
+
+        figure {
+            img {
+                min-height: 250px;
+                border-radius: 10px;
+            }
+
+        }
+    }
+
+
+
+    .title {
+        grid-area: h1;
+        margin-bottom: 0;
+        text-align: center;
+        font-size: 4rem;
+        padding-bottom: 30px;
+
+        @media (max-width: 500px) {
+            line-height: .8;
+        }
+    }
+
+    .aboutMe {
+        grid-area: ds;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 0 20px 20px 20px;
+        font-size: 10px;
+    }
+
+    .experience {
+        grid-area: ex;
+        height: 200px;
+        align-self: center;
+        margin-bottom: 20px;
+        align-items: flex-start;
+        justify-content: start;
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+    }
+
+    .education {
+        grid-area: ed;
+        height: 200px;
+        align-self: center;
+        margin-bottom: 20px;
+        align-items: flex-start;
+        justify-content: start;
+
+        h2 {
+            margin-bottom: 30px;
+        }
+
+        h3 {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+    }
+
+    @media screen and (max-width: 768px) {
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-areas:
+            "h1 h1"
+            "ig ig"
+            "ds ds"
+            "ex ed";
+
+        .image {
+
+            figure {
+                img {
+                    height: 250px;
+                }
+            }
+        }
+    }
+
+    @media screen and (max-width: 576px) {
+        grid-template-columns: 1fr;
+        // grid-auto-rows: auto;
+        grid-template-areas: "h1" "ig" "ds" "ex" "ed";
+        gap: 30px;
+        padding-bottom: 20px;
+
+        .image {
+            figure {
+
+                img {
+                    min-height: 100px;
+                }
+
+            }
+        }
+
+        .education,
+        .experience {
+            height: unset;
+            align-self: unset;
+            margin-bottom: unset;
+        }
+    }
+}

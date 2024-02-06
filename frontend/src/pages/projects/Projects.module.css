@@ -1,0 +1,34 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 4rem;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem 6rem 4rem 6rem;
+}
+.section h1 {
+  grid-column: 1/-1;
+  text-align: center;
+}
+.section figure {
+  padding-bottom: 0;
+}
+.section figure figcaption {
+  font-size: 1rem;
+  padding: 0.7rem 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.section figure figcaption a {
+  font-size: 12px;
+  padding: 5px 10px;
+}
+@media (max-width: 600px) {
+  .section {
+    padding: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+}/*# sourceMappingURL=Projects.module.css.map */

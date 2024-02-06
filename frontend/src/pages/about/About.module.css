@@ -1,0 +1,91 @@
+.section {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  max-width: 1000px;
+  grid-template-areas: "ig ig ig h1 h1 h1 h1 h1" "ig ig ig ds ds ds ds ds" "ex ex ex ex ed ed ed ed";
+  padding: 50px 20px 0 20px;
+  margin: 0 auto;
+  gap: 20px;
+}
+.section .image {
+  grid-area: ig;
+}
+.section .image figure img {
+  min-height: 250px;
+  border-radius: 10px;
+}
+.section .title {
+  grid-area: h1;
+  margin-bottom: 0;
+  text-align: center;
+  font-size: 4rem;
+  padding-bottom: 30px;
+}
+@media (max-width: 500px) {
+  .section .title {
+    line-height: 0.8;
+  }
+}
+.section .aboutMe {
+  grid-area: ds;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 0 20px 20px 20px;
+  font-size: 10px;
+}
+.section .experience {
+  grid-area: ex;
+  height: 200px;
+  align-self: center;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: start;
+}
+.section .experience h2 {
+  margin-bottom: 30px;
+}
+.section .experience h3 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+.section .education {
+  grid-area: ed;
+  height: 200px;
+  align-self: center;
+  margin-bottom: 20px;
+  align-items: flex-start;
+  justify-content: start;
+}
+.section .education h2 {
+  margin-bottom: 30px;
+}
+.section .education h3 {
+  margin-bottom: 0;
+  font-size: 1rem;
+}
+@media screen and (max-width: 768px) {
+  .section {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas: "h1 h1" "ig ig" "ds ds" "ex ed";
+  }
+  .section .image figure img {
+    height: 250px;
+  }
+}
+@media screen and (max-width: 576px) {
+  .section {
+    grid-template-columns: 1fr;
+    grid-template-areas: "h1" "ig" "ds" "ex" "ed";
+    gap: 30px;
+    padding-bottom: 20px;
+  }
+  .section .image figure img {
+    min-height: 100px;
+  }
+  .section .education,
+  .section .experience {
+    height: unset;
+    align-self: unset;
+    margin-bottom: unset;
+  }
+}/*# sourceMappingURL=About.module.css.map */

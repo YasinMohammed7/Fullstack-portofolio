@@ -1,0 +1,57 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  margin: 0 auto;
+  max-width: 1400px;
+}
+nav .logo {
+  background-color: white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: grid;
+  place-content: center;
+  margin-left: 15px;
+}
+nav .logo a h2 {
+  color: black;
+}
+nav .menu {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 50%;
+}
+@media (max-width: 600px) {
+  nav {
+    margin: 0 15px;
+  }
+  nav .logo {
+    z-index: 1;
+    margin-left: 0;
+  }
+  nav .hamburger {
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 999;
+  }
+  nav .hamburger .button {
+    font-size: 1.5rem;
+  }
+  nav .hamburger .button:hover svg path {
+    stroke: black;
+  }
+  nav .menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    flex-direction: column;
+    height: 300px;
+    width: 100%;
+    background-color: black;
+    z-index: 1;
+    transform-origin: top;
+  }
+}/*# sourceMappingURL=header.css.map */

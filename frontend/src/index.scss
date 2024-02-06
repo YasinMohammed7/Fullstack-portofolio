@@ -1,0 +1,139 @@
+@import "_variables";
+
+:root {
+    font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    color-scheme: light dark;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: $background-color;
+    color: $default-text-color;
+    line-height: 19.2px;
+    font-size: 14px;
+    font-weight: 400;
+    min-height: 100vh;
+}
+
+/* typography */
+
+h1 {
+    font-size: $h1-fs;
+    line-height: 40px;
+    margin-bottom: 12px;
+    color: $text-color-heading;
+}
+
+h2 {
+    font-size: $h2-fs;
+    font-weight: bold;
+    color: $text-color-heading;
+}
+
+h3 {
+    font-size: $h3-fs;
+    margin-bottom: 12px;
+    color: $text-color-heading;
+
+    @media (max-width: 500px) {
+        font-size: 16px;
+    }
+}
+
+h4 {
+    font-size: $h4-fs;
+    margin-bottom: 3px;
+    color: #bcbcbc;
+}
+
+h5 {
+    font-size: $h5-fs;
+
+    &:hover {
+        color: $text-color-heading;
+        transition: 0.3s;
+    }
+}
+
+a {
+    color: $default-text-color;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: $box-background-before;
+    border-radius: $box-border-radius;
+    position: relative;
+    padding: $default-padding-inside-box;
+
+    &.row {
+        flex-direction: row;
+
+        @media (max-width: 500px) {
+            flex-direction: column;
+        }
+    }
+
+    &.column {
+        flex-direction: column;
+    }
+
+    .image {
+        img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        // min-width: 200px;
+    }
+
+    .icon {
+        position: absolute;
+        right: 20px;
+        bottom: 20px;
+        opacity: 0.2;
+        transition: 0.3s;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .info {
+        width: 100%;
+        margin-top: 20px;
+    }
+}
+
+.button {
+    padding: 10px 15px;
+    background-color: $button-color;
+    color: $text-color-heading;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    transition: 0.3s;
+    font-size: 18px;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $text-color-heading;
+        color: $background-color;
+    }
+}
