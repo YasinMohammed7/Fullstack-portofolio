@@ -12,6 +12,8 @@ const getAllUsers = asyncHandler(async (req, res) => {
         select: {
             id: true,
             username: true,
+            roles: true,
+            active: true,
         }
     })
     if (!users?.length) {
