@@ -117,7 +117,7 @@ const updateUser = asyncHandler(async (req, res) => {
         data: updateData
     })
 
-    res.json({ message: `${updatedUser.username} updated`, updatedUser })
+    res.json({ message: `${updatedUser.username} updated` })
 })
 
 // @desc delete a users
@@ -126,17 +126,16 @@ const updateUser = asyncHandler(async (req, res) => {
 
 const deleteUser = asyncHandler(async (req, res) => {
     const { id } = req.body
-    const userId = +id
 
     if (!id) {
         return res.status(400).json({ message: "User ID Required" })
     }
 
-    const messages = await prisma.message.findFirst({
-        where: { userId: userId }
+    const message = await prisma.message.findFirst({
+        where: { userId: +id }
     });
 
-    if (messages?.length) {
+    if (message) {
         return res.status(400).json({ message: 'User has assigned messages' });
     }
 
