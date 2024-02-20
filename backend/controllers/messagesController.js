@@ -9,6 +9,8 @@ const getAllMessages = asyncHandler(async (req, res) => {
                 id: true,
                 content: true,
                 userId: true,
+                createdAt: true,
+                updatedAt: true,
                 user: {
                     select: {
                         id: true,
