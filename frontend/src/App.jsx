@@ -8,6 +8,10 @@ import Projects from "./pages/projects/Projects";
 import Contact from "./pages/contact/Contact";
 import UsersList from "./components/features/users/UsersList";
 import MessagesList from "./components/features/messages/MessagesList";
+import EditUser from "./components/features/users/EditUser";
+import NewUserForm from "./components/features/users/NewUserForm";
+import EditMessage from "./components/features/messages/EditMessage";
+import NewMessageForm from "./components/features/messages/NewMessageForm";
 
 const App = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(0);
@@ -40,8 +44,16 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
         <Route path="contact" element={<Contact />} />
-        <Route path="users" element={<UsersList />} />
-        <Route path="messages" element={<MessagesList />} />
+        <Route path="users">
+          <Route index element={<UsersList />} />
+          <Route path=":id" element={<EditUser />} />
+          <Route path="new" element={<NewUserForm />} />
+        </Route>
+        <Route path="messages">
+          <Route index element={<MessagesList />} />
+          <Route path=":id" element={<EditMessage />} />
+          <Route path="new" element={<NewMessageForm />} />
+        </Route>
         <Route path="*" element={<h1>Page not found</h1>} />
       </Route>
     </Routes>

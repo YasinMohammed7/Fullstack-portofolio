@@ -29,10 +29,47 @@ export const messagesApiSlice = apiSlice.injectEndpoints({
         } else return [{ type: "Message", id: "LIST" }];
       },
     }),
+    addNewMessage: builder.mutation({
+      query: (initialMessageData) => ({
+        url: "/messages",
+        method: "POST",
+        body: {
+          ...initialMessageData,
+        },
+      }),
+      invalidatesTags: [{ type: "Message", id: "LIST" }],
+    }),
+    updateMessage: builder.mutation({
+      query: (initialMessageData) => ({
+        url: "/messages",
+        method: "PATCH",
+        body: {
+          ...initialMessageData,
+        },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: "Message", id: arg.id },
+      ],
+    }),
+    deleteMessage: builder.mutation({
+      query: ({ id }) => ({
+        url: "/messages",
+        method: "DELETE",
+        body: { id },
+      }),
+      invalidatesTags: (result, error, arg) => [
+        { type: "Message", id: arg.id },
+      ],
+    }),
   }),
 });
 
-export const { useGetMessagesQuery } = messagesApiSlice;
+export const {
+  useGetMessagesQuery,
+  useAddNewMessageMutation,
+  useUpdateMessageMutation,
+  useDeleteMessageMutation,
+} = messagesApiSlice;
 
 export const selectMessagesResult =
   messagesApiSlice.endpoints.getMessages.select();
