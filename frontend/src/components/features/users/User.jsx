@@ -8,7 +8,7 @@ const User = ({ userId }) => {
   const navigate = useNavigate();
 
   if (user) {
-    const handleEdit = () => navigate(`users/${userId}`);
+    const handleEdit = () => navigate(`${userId}`);
     const userRolesString = user.roles.toString().replaceAll(",", ", ");
     const cellStatus = user.active ? "" : "table__cell--inactive";
 

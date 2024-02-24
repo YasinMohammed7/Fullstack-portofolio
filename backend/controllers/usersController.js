@@ -36,7 +36,7 @@ const createNewUser = asyncHandler(async (req, res) => {
     }
 
     const duplicate = await prisma.user.findUnique({
-        where: { username: username }
+        where: { username }
     })
 
     if (duplicate) {
@@ -71,14 +71,14 @@ const createNewUser = asyncHandler(async (req, res) => {
 // @access Private
 
 const updateUser = asyncHandler(async (req, res) => {
-    const { id, username, roles, active, password } = req.body
-    const userId = +id
-    if (!id || !username || !Array.isArray(roles) || !roles.length || typeof active !== "boolean") {
+    const { id, username, roles, password } = req.body
+
+    if (!id || !username || !Array.isArray(roles) || !roles.length) {
         return res.status(400).json({ message: "All fields are required" })
     }
 
     const user = await prisma.user.findUnique({
-        where: { id: userId }
+        where: { id: +id }
     })
 
     if (!user) {
@@ -89,7 +89,7 @@ const updateUser = asyncHandler(async (req, res) => {
         where: {
             username: username,
             NOT: {
-                id: userId
+                id: +id
             }
         }
     });
@@ -104,7 +104,6 @@ const updateUser = asyncHandler(async (req, res) => {
         roles: {
             set: roles
         },
-        active: active
     };
 
     if (password) {
@@ -113,7 +112,7 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     const updatedUser = await prisma.user.update({
-        where: { id: userId },
+        where: { id: +id },
         data: updateData
     })
 
@@ -140,7 +139,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     const user = await prisma.user.findUnique({
-        where: { id: userId }
+        where: { id: +id }
     })
 
     if (!user) {
@@ -148,7 +147,7 @@ const deleteUser = asyncHandler(async (req, res) => {
     }
 
     const result = await prisma.user.delete({
-        where: { id: userId }
+        where: { id: +id }
     })
 
     const reply = `Username ${result.username} with ID ${result.id} deleted`

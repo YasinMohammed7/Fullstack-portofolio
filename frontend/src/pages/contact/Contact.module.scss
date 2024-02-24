@@ -8,7 +8,8 @@
 
 .form {
     gap: 1rem;
-    margin-bottom: 3rem;
+    max-width: 800px;
+    margin: 2rem auto;
 
     legend {
         align-self: flex-start;
@@ -27,7 +28,7 @@
 
     input,
     textarea {
-        width: 100%;
+        width: 90%;
         padding: 20px;
         margin-bottom: 10px;
         background-color: rgba(255, 255, 255, 0.05);
@@ -37,7 +38,7 @@
     }
 
     button {
-        width: 100%;
+        width: 90%;
     }
 }
 
@@ -45,11 +46,6 @@
     margin-bottom: 2rem;
 }
 
-.messages {
-    color: white;
-    margin-top: 1rem;
-
-    p {
-        padding: 0.5rem 0;
-    }
+.options {
+    margin-bottom: .3rem;
 }

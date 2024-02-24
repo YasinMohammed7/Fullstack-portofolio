@@ -128,6 +128,10 @@ img {
   color: #0f0f0f;
 }
 
+.nowrap {
+  white-space: nowrap;
+}
+
 .errMsg {
   display: inline-block;
   background-color: white;
@@ -177,4 +181,9 @@ tr {
 
 .table__cell--inactive {
   background-color: lightgray;
+}
+
+.form__input--incomplete {
+  border: 1px solid #f00;
+  outline: 1px solid #f00;
 }/*# sourceMappingURL=index.css.map */
