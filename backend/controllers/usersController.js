@@ -13,7 +13,13 @@ const getAllUsers = asyncHandler(async (req, res) => {
             id: true,
             username: true,
             roles: true,
-            active: true,
+            message: {
+                select: {
+                    content: true,
+                    createdAt: true,
+                    updatedAt: true
+                }
+            }
         }
     })
     if (!users?.length) {

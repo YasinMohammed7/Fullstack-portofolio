@@ -8,7 +8,11 @@ const MessagesList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetMessagesQuery();
+  } = useGetMessagesQuery(undefined, {
+    pollingInterval: 15000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgchange: true,
+  });
 
   let content;
 
@@ -32,10 +36,10 @@ const MessagesList = () => {
               Owner
             </th>
             <th scope="col" className="table__th message__created">
-              Created
+              Message created
             </th>
             <th scope="col" className="table__th message__updated">
-              Updated
+              Message updated
             </th>
             <th scope="col" className="table__th message">
               Message

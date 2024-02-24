@@ -8,19 +8,39 @@ const User = ({ userId }) => {
   const navigate = useNavigate();
 
   if (user) {
-    const handleEdit = () => navigate(`${userId}`);
+    const created = new Date(user.message?.createdAt).toLocaleString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+    const updated = new Date(user.message?.updatedAt).toLocaleString("en-GB", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+
+    const handleUserEdit = () => navigate(`${userId}`);
     const userRolesString = user.roles.toString().replaceAll(",", ", ");
-    const cellStatus = user.active ? "" : "table__cell--inactive";
 
     return (
       <tr className="table__row user">
-        <td className={`table__cell ${cellStatus}`}>{user.username}</td>
-        <td className={`table__cell ${cellStatus}`}>{userRolesString}</td>
-        <td className={`table__cell ${cellStatus}`}>
-          <button className="button" onClick={handleEdit}>
+        <td className={`table__cell`}>{user.username}</td>
+        <td className={`table__cell`}>{userRolesString}</td>
+        <td className={`table__cell`}>
+          <button className="button" onClick={handleUserEdit}>
             <MdEdit />
           </button>
         </td>
+        <td className={`table__cell`}>
+          {user.message?.content === "" ? "No message" : user.message?.content}
+        </td>
+        <td className={`table__cell`}>
+          <button className="button">
+            <MdEdit />
+          </button>
+        </td>
+        <td className={`table__cell`}>{created}</td>
+        <td className={`table__cell`}>{updated}</td>
       </tr>
     );
   } else return null;

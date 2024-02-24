@@ -14,6 +14,13 @@ const Contact = () => {
         <p>
           <Link to="/users">View User Settings</Link>
         </p>
+
+        <p>
+          <Link to="/users/new">Add new user</Link>
+        </p>
+        <p>
+          <Link to="/messages/new">Add new message</Link>
+        </p>
       </div>
     </section>
   );

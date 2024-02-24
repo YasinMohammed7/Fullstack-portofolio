@@ -8,7 +8,11 @@ const UsersList = () => {
     isSuccess,
     isError,
     error,
-  } = useGetUsersQuery();
+  } = useGetUsersQuery(undefined, {
+    pollingInterval: 60000,
+    refetchOnFocus: true,
+    refetchOnMountOrArgchange: true,
+  });
 
   let content;
   if (isLoading) content = <p>Loading...</p>;
@@ -33,7 +37,19 @@ const UsersList = () => {
               Roles
             </th>
             <th scope="col" className="table__th user__edit">
-              Edit
+              Edit user
+            </th>
+            <th scope="col" className="table__th message">
+              Message
+            </th>
+            <th scope="col" className="table__th message__edit">
+              Edit message
+            </th>
+            <th scope="col" className="table__th message__created">
+              Message created
+            </th>
+            <th scope="col" className="table__th message__updated">
+              Message updated
             </th>
           </tr>
         </thead>
