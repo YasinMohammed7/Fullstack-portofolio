@@ -20,7 +20,7 @@ const Message = ({ messageId }) => {
       day: "numeric",
     });
 
-    const handleEdit = () => navigate(`messages/${messageId}`);
+    const handleMessageEdit = () => navigate(`${messageId}`);
 
     return (
       <tr className="table__row">
@@ -31,7 +31,7 @@ const Message = ({ messageId }) => {
         <td className="table__cell message__updated">{updated}</td>
         <td className="table__cell message__title">{message.content}</td>
         <td className="table__cell">
-          <button className="button" onClick={handleEdit}>
+          <button className="button" onClick={handleMessageEdit}>
             <MdEdit />
           </button>
         </td>
