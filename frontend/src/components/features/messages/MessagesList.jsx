@@ -17,7 +17,7 @@ const MessagesList = () => {
   let content;
 
   if (isLoading) content = <p>Loading...</p>;
-  if (isError) content = <p className="errorMsg">{error?.data?.message}</p>;
+  if (isError) content = <p className="errMsg">{error?.data?.message}</p>;
 
   if (isSuccess) {
     const { ids } = messages;

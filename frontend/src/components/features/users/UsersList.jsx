@@ -16,8 +16,7 @@ const UsersList = () => {
 
   let content;
   if (isLoading) content = <p>Loading...</p>;
-  if (isError)
-    content = <p className="errMsg">Error: {error?.data?.message}</p>;
+  if (isError) content = <p className="errMsg">{error?.data?.message}</p>;
 
   if (isSuccess) {
     const { ids } = users;
