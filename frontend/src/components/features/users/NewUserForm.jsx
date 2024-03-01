@@ -95,6 +95,7 @@ const NewUserForm = () => {
           autoComplete="off"
           value={username}
           onChange={onUsernameChanged}
+          required
         />
 
         <label htmlFor="password">
@@ -107,6 +108,7 @@ const NewUserForm = () => {
           type="password"
           value={password}
           onChange={onPasswordChanged}
+          required
         />
 
         <label htmlFor="roles">ASSIGNED ROLES:</label>
@@ -118,16 +120,12 @@ const NewUserForm = () => {
           size="2"
           value={roles}
           onChange={onRolesChanged}
+          required
         >
           {options}
         </select>
 
-        <button
-          className="button"
-          title="Save"
-          type="submit"
-          disabled={!canSave}
-        >
+        <button className="button" title="Save" disabled={!canSave}>
           Create Account
         </button>
       </form>

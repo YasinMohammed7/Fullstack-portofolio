@@ -11,8 +11,9 @@ import MessagesList from "./components/features/messages/MessagesList";
 import EditUser from "./components/features/users/EditUser";
 import NewUserForm from "./components/features/users/NewUserForm";
 import EditMessage from "./components/features/messages/EditMessage";
-import NewMessageForm from "./components/features/messages/NewMessageForm";
+import NewMessage from "./components/features/messages/NewMessage";
 import Prefetch from "./components/features/auth/Prefetch";
+import Login from "./components/features/auth/Login";
 
 const App = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(0);
@@ -41,6 +42,7 @@ const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout width={width} />}>
+        <Route path="login" element={<Login />} />
         <Route index element={<Home yearsOfExperience={yearsOfExperience} />} />
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
@@ -54,9 +56,10 @@ const App = () => {
           <Route path="messages">
             <Route index element={<MessagesList />} />
             <Route path=":id" element={<EditMessage />} />
-            <Route path="new" element={<NewMessageForm />} />
+            <Route path="new" element={<NewMessage />} />
           </Route>
         </Route>
+
         <Route path="*" element={<h1>Page not found</h1>} />
       </Route>
     </Routes>
