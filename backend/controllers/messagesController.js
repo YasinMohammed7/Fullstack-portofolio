@@ -33,23 +33,24 @@ const getAllMessages = asyncHandler(async (req, res) => {
 })
 
 const createNewMessage = asyncHandler(async (req, res) => {
-    const { content, userId } = req.body
+    const { content, username } = req.body
 
-    if (!content || !userId) {
+    if (!content || !username) {
         res.status(400).json({ message: "All fields are required" })
     }
 
-    const message = await prisma.message.findUnique({
-        where: { userId: +userId }
-    })
-
     const user = await prisma.user.findUnique({
-        where: { id: +userId }
+        where: { username }
     })
 
     if (!user) {
         return res.status(400).json({ message: "User not found" })
     }
+
+    const message = await prisma.message.findUnique({
+        where: { userId: +user.id }
+    })
+
 
     if (message) {
         return res.status(400).json({ message: "The user already send a message" })
@@ -58,7 +59,7 @@ const createNewMessage = asyncHandler(async (req, res) => {
     const newMessage = await prisma.message.create({
         data: {
             content,
-            userId: +userId
+            userId: +user.id
         }
     })
 
