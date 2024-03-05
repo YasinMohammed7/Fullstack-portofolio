@@ -14,6 +14,7 @@ import EditMessage from "./components/features/messages/EditMessage";
 import NewMessage from "./components/features/messages/NewMessage";
 import Prefetch from "./components/features/auth/Prefetch";
 import Login from "./components/features/auth/Login";
+import PersistLogin from "./components/features/auth/PersistLogin";
 
 const App = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(0);
@@ -47,16 +48,18 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
         <Route path="contact" element={<Contact />} />
-        <Route element={<Prefetch />}>
-          <Route path="users">
-            <Route index element={<UsersList />} />
-            <Route path=":id" element={<EditUser />} />
-            <Route path="new" element={<NewUserForm />} />
-          </Route>
-          <Route path="messages">
-            <Route index element={<MessagesList />} />
-            <Route path=":id" element={<EditMessage />} />
-            <Route path="new" element={<NewMessage />} />
+        <Route element={<PersistLogin />}>
+          <Route element={<Prefetch />}>
+            <Route path="users">
+              <Route index element={<UsersList />} />
+              <Route path=":id" element={<EditUser />} />
+              <Route path="new" element={<NewUserForm />} />
+            </Route>
+            <Route path="messages">
+              <Route index element={<MessagesList />} />
+              <Route path=":id" element={<EditMessage />} />
+              <Route path="new" element={<NewMessage />} />
+            </Route>
           </Route>
         </Route>
 

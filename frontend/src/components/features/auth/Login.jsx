@@ -91,8 +91,6 @@ const Login = () => {
           required
         />
 
-        <button className="button">Sign in</button>
-
         <label htmlFor="persist">
           <input
             type="checkbox"
@@ -102,6 +100,8 @@ const Login = () => {
           />
           Remember me
         </label>
+
+        <button className="button">Sign in</button>
       </form>
     </>
   );

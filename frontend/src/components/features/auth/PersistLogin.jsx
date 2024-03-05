@@ -1,9 +1,8 @@
 import { Link, Outlet } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useSelector } from "react-redux";
 import usePersist from "../../../hooks/usePersist";
 import { selectCurrentToken } from "./authSlice";
-import { useRef, useState } from "react";
 import { useRefreshMutation } from "./authApiSlice";
 
 const PersistLogin = () => {
@@ -32,7 +31,7 @@ const PersistLogin = () => {
     }
 
     return () => (effectRan.current = true);
-  });
+  }, []);
 
   let content;
   if (!persist) {
