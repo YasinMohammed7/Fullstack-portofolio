@@ -10,7 +10,7 @@ const PersistLogin = () => {
   const token = useSelector(selectCurrentToken);
   const effectRan = useRef(false);
 
-  const [trueSucces, setTrueSucces] = useState(false);
+  const [trueSuccess, setTrueSuccess] = useState(false);
 
   const [refresh, { isUninitialized, isLoading, isSuccess, isError, error }] =
     useRefreshMutation();
@@ -21,7 +21,7 @@ const PersistLogin = () => {
         console.log("verifying refresh token");
         try {
           await refresh();
-          setTrueSucces(true);
+          setTrueSuccess(true);
         } catch (err) {
           console.error(err);
         }
@@ -35,17 +35,20 @@ const PersistLogin = () => {
 
   let content;
   if (!persist) {
+    console.log("no persist");
     content = <Outlet />;
   } else if (isLoading) {
+    console.log("loading");
     content = <p>Loading...</p>;
   } else if (isError) {
+    console.log("error");
     content = (
       <p className="errorMsg">
         {error?.data?.message}
         <Link to="/login">Please login again</Link>
       </p>
     );
-  } else if (isSuccess && trueSucces) {
+  } else if (isSuccess && trueSuccess) {
     console.log("success");
     content = <Outlet />;
   } else if (token && isUninitialized) {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setCredentials } from "./authSlice";
 import { useLoginMutation } from "./authApiSlice";
@@ -57,53 +57,51 @@ const Login = () => {
   if (isLoading) return <p>Loading...</p>;
 
   const content = (
-    <>
+    <form className={`card column ${styles.form}`} onSubmit={handleSubmit}>
+      <legend>
+        <h2>
+          Lets work <span>together</span>
+        </h2>
+      </legend>
       {errMsg && (
         <p className="errorMsg" ref={errRef} aria-live="assertive">
           {errMsg}
         </p>
       )}
-      <form className={`card column ${styles.form}`} onSubmit={handleSubmit}>
-        <legend>
-          <h2>
-            Lets work <span>together</span>
-          </h2>
-        </legend>
-        <label htmlFor="username">Username:</label>
+      <label htmlFor="username">Username:</label>
+      <input
+        id="username"
+        name="username"
+        type="text"
+        ref={userRef}
+        autoComplete="off"
+        value={username}
+        onChange={handleUserInput}
+        required
+      />
+
+      <label htmlFor="password">Password:</label>
+      <input
+        id="password"
+        name="password"
+        type="password"
+        value={password}
+        onChange={handlePwdInput}
+        required
+      />
+
+      <label htmlFor="persist">
         <input
-          id="username"
-          name="username"
-          type="text"
-          ref={userRef}
-          autoComplete="off"
-          value={username}
-          onChange={handleUserInput}
-          required
+          type="checkbox"
+          id="persist"
+          onChange={handleToggle}
+          checked={persist}
         />
+        Remember me
+      </label>
 
-        <label htmlFor="password">Password:</label>
-        <input
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={handlePwdInput}
-          required
-        />
-
-        <label htmlFor="persist">
-          <input
-            type="checkbox"
-            id="persist"
-            onChange={handleToggle}
-            checked={persist}
-          />
-          Remember me
-        </label>
-
-        <button className="button">Sign in</button>
-      </form>
-    </>
+      <button className="button">Sign in</button>
+    </form>
   );
 
   return content;

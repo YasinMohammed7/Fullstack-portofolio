@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
-import { selectMessageById } from "./messagesApiSlice";
+import { useGetMessagesQuery } from "./messagesApiSlice";
 
 const Message = ({ messageId }) => {
-  const message = useSelector((state) => selectMessageById(state, messageId));
+  const { message } = useGetMessagesQuery("messagesList", {
+    selectFromResult: ({ data }) => ({
+      message: data?.entities[messageId],
+    }),
+  });
 
   const navigate = useNavigate();
 

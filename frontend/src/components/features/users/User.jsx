@@ -1,10 +1,14 @@
 import { useSelector } from "react-redux";
-import { selectUserById } from "./usersApiSlice";
+import { selectUserById, useGetUsersQuery } from "./usersApiSlice";
 import { useNavigate } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 
 const User = ({ userId }) => {
-  const user = useSelector((state) => selectUserById(state, userId));
+  const { user } = useGetUsersQuery("usersList", {
+    selectFromResult: ({ data }) => ({
+      user: data?.entities[userId],
+    }),
+  });
   const navigate = useNavigate();
 
   if (user) {
@@ -31,16 +35,18 @@ const User = ({ userId }) => {
             <MdEdit />
           </button>
         </td>
-        <td className={`table__cell`}>
-          {user.message?.content === "" ? "No message" : user.message?.content}
-        </td>
+        <td className={`table__cell`}>{user.message?.content}</td>
         <td className={`table__cell`}>
           <button className="button">
             <MdEdit />
           </button>
         </td>
-        <td className={`table__cell`}>{created}</td>
-        <td className={`table__cell`}>{updated}</td>
+        <td className={`table__cell`}>
+          {created === "Invalid Date" ? "" : created}
+        </td>
+        <td className={`table__cell`}>
+          {updated === "Invalid Date" ? "" : updated}
+        </td>
       </tr>
     );
   } else return null;

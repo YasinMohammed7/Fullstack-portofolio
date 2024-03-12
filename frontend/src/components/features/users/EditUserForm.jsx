@@ -91,71 +91,69 @@ const EditUserForm = ({ user }) => {
   const errContent = (error?.data?.message || delerror?.data?.message) ?? "";
 
   const content = (
-    <>
+    <form
+      className={`card column ${styles.form}`}
+      onSubmit={(e) => e.preventDefault()}
+    >
+      <legend>
+        <h2>
+          Lets work <span>together</span>
+        </h2>
+      </legend>
       {(isError || isDelError) && <p className="errorMsg">{errContent}</p>}
-      <form
-        className={`card column ${styles.form}`}
-        onSubmit={(e) => e.preventDefault()}
+      <label htmlFor="username">
+        Username: <span className="nowrap">[3-20 letters]</span>
+      </label>
+      <input
+        className={` ${validUserClass}`}
+        id="username"
+        name="username"
+        type="text"
+        autoComplete="off"
+        value={username}
+        onChange={onUsernameChanged}
+      />
+
+      <label htmlFor="password">
+        Password: <span className="nowrap">[empty = no change]</span>{" "}
+        <span className="nowrap">[4-12 chars incl. !@#$%]</span>
+      </label>
+      <input
+        className={` ${validPwdClass}`}
+        id="password"
+        name="password"
+        type="password"
+        value={password}
+        onChange={onPasswordChanged}
+      />
+
+      <label className="form__label" htmlFor="roles">
+        ASSIGNED ROLES:
+      </label>
+      <select
+        id="roles"
+        name="roles"
+        className={`card ${validRolesClass}`}
+        multiple={true}
+        size="2"
+        value={roles}
+        onChange={onRolesChanged}
       >
-        <legend>
-          <h2>
-            Lets work <span>together</span>
-          </h2>
-        </legend>
-        <label htmlFor="username">
-          Username: <span className="nowrap">[3-20 letters]</span>
-        </label>
-        <input
-          className={` ${validUserClass}`}
-          id="username"
-          name="username"
-          type="text"
-          autoComplete="off"
-          value={username}
-          onChange={onUsernameChanged}
-        />
+        {options}
+      </select>
 
-        <label htmlFor="password">
-          Password: <span className="nowrap">[empty = no change]</span>{" "}
-          <span className="nowrap">[4-12 chars incl. !@#$%]</span>
-        </label>
-        <input
-          className={` ${validPwdClass}`}
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={onPasswordChanged}
-        />
-
-        <label className="form__label" htmlFor="roles">
-          ASSIGNED ROLES:
-        </label>
-        <select
-          id="roles"
-          name="roles"
-          className={`card ${validRolesClass}`}
-          multiple={true}
-          size="2"
-          value={roles}
-          onChange={onRolesChanged}
-        >
-          {options}
-        </select>
-
-        <button
-          className="button"
-          onClick={onSaveUserClicked}
-          title="Save"
-          disabled={!canSave}
-        >
-          Save changes
-        </button>
-        <button className="button" title="Delete" onClick={onDeleteUserClicked}>
-          Delete
-        </button>
-      </form>
-    </>
+      <button
+        className="button"
+        onClick={onSaveUserClicked}
+        title="Save"
+        disabled={!canSave}
+      >
+        Save changes
+      </button>
+      <button className="button" title="Delete" onClick={onDeleteUserClicked}>
+        Delete
+      </button>
+    </form>
   );
 
   return content;

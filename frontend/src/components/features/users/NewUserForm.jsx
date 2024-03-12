@@ -72,64 +72,58 @@ const NewUserForm = () => {
     : "";
 
   const content = (
-    <>
+    <form className={`card column ${styles.form}`} onSubmit={onSaveUserClicked}>
       {isError && <p className="errorMsg">{error?.data?.message}</p>}
+      <legend>
+        <h2>
+          Lets work <span>together</span>
+        </h2>
+      </legend>
+      <label htmlFor="username">
+        Username: <span className="nowrap">[3-20 letters]</span>
+      </label>
+      <input
+        className={` ${validUserClass}`}
+        id="username"
+        name="username"
+        type="text"
+        autoComplete="off"
+        value={username}
+        onChange={onUsernameChanged}
+        required
+      />
 
-      <form
-        className={`card column ${styles.form}`}
-        onSubmit={onSaveUserClicked}
+      <label htmlFor="password">
+        Password: <span className="nowrap">[4-12 chars incl. !@#$%]</span>
+      </label>
+      <input
+        className={` ${validPwdClass}`}
+        id="password"
+        name="password"
+        type="password"
+        value={password}
+        onChange={onPasswordChanged}
+        required
+      />
+
+      <label htmlFor="roles">ASSIGNED ROLES:</label>
+      <select
+        id="roles"
+        name="roles"
+        className={`card ${validRolesClass}`}
+        multiple={true}
+        size="2"
+        value={roles}
+        onChange={onRolesChanged}
+        required
       >
-        <legend>
-          <h2>
-            Lets work <span>together</span>
-          </h2>
-        </legend>
-        <label htmlFor="username">
-          Username: <span className="nowrap">[3-20 letters]</span>
-        </label>
-        <input
-          className={` ${validUserClass}`}
-          id="username"
-          name="username"
-          type="text"
-          autoComplete="off"
-          value={username}
-          onChange={onUsernameChanged}
-          required
-        />
+        {options}
+      </select>
 
-        <label htmlFor="password">
-          Password: <span className="nowrap">[4-12 chars incl. !@#$%]</span>
-        </label>
-        <input
-          className={` ${validPwdClass}`}
-          id="password"
-          name="password"
-          type="password"
-          value={password}
-          onChange={onPasswordChanged}
-          required
-        />
-
-        <label htmlFor="roles">ASSIGNED ROLES:</label>
-        <select
-          id="roles"
-          name="roles"
-          className={`card ${validRolesClass}`}
-          multiple={true}
-          size="2"
-          value={roles}
-          onChange={onRolesChanged}
-          required
-        >
-          {options}
-        </select>
-
-        <button className="button" title="Save" disabled={!canSave}>
-          Create Account
-        </button>
-      </form>
-    </>
+      <button className="button" title="Save" disabled={!canSave}>
+        Create Account
+      </button>
+    </form>
   );
   return content;
 };

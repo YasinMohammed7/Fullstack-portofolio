@@ -1,13 +1,12 @@
-import { selectAllUsers } from "../users/usersApiSlice";
-import { useSelector } from "react-redux";
+import useAuth from "../../../hooks/useAuth";
 import NewMessageForm from "./NewMessageForm";
 
 const NewMessage = () => {
-  const users = useSelector(selectAllUsers);
+  const { username } = useAuth();
 
-  if (!users?.length) return <p>Not currently available</p>;
+  if (!username) return <p>You must be logged in</p>;
 
-  const content = <NewMessageForm users={users} />;
+  const content = <NewMessageForm username={username} />;
   return content;
 };
 

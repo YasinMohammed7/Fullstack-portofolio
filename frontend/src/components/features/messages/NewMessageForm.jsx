@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAddNewMessageMutation } from "./messagesApiSlice";
-import useAuth from "../../../hooks/useAuth";
 
-const NewMessageForm = ({ users }) => {
-  const { username } = useAuth();
+const NewMessageForm = ({ username }) => {
   const [addNewMessage, { isLoading, isSuccess, isError, error }] =
     useAddNewMessageMutation();
 
@@ -15,7 +13,7 @@ const NewMessageForm = ({ users }) => {
   useEffect(() => {
     if (isSuccess) {
       setContent("");
-      navigate("/messages");
+      navigate("/users");
     }
   }, [isSuccess, navigate]);
 
@@ -31,24 +29,22 @@ const NewMessageForm = ({ users }) => {
   };
 
   return (
-    <>
+    <form onSubmit={onSaveMessageClicked}>
       {isError && <p className="errmsg">{error?.data?.message}</p>}
-      <form onSubmit={onSaveMessageClicked}>
-        <label htmlFor="content">Send a message: </label>
-        <textarea
-          value={content}
-          onChange={onContentChanged}
-          placeholder="Enter your message..."
-          name="content"
-          id="content"
-          cols="10"
-          rows="10"
-        ></textarea>
-        <button className="button" disabled={!canSave}>
-          {isLoading ? "Saving" : "Save"}
-        </button>
-      </form>
-    </>
+      <label htmlFor="content">Send a message: </label>
+      <textarea
+        value={content}
+        onChange={onContentChanged}
+        placeholder="Enter your message..."
+        name="content"
+        id="content"
+        cols="10"
+        rows="10"
+      ></textarea>
+      <button className="button" disabled={!canSave}>
+        {isLoading ? "Sending" : "Send"}
+      </button>
+    </form>
   );
 };
 

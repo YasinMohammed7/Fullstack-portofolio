@@ -93,7 +93,7 @@ const updateUser = asyncHandler(async (req, res) => {
 
     const duplicate = await prisma.user.findFirst({
         where: {
-            username: username,
+            username,
             NOT: {
                 id: +id
             }
@@ -106,7 +106,7 @@ const updateUser = asyncHandler(async (req, res) => {
     }
 
     const updateData = {
-        username: username,
+        username,
         roles: {
             set: roles
         },

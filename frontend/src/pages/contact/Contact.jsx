@@ -1,11 +1,14 @@
+import useAuth from "../../hooks/useAuth";
 import styles from "./Contact.module.css";
 import { Link } from "react-router-dom";
 
 const Contact = () => {
+  const { username, isAdmin } = useAuth();
+
   return (
     <section className={styles.section}>
       <div className="welcome card column">
-        <h1>Welcome!</h1>
+        <h1>Welcome! {username}</h1>
 
         <p>
           <Link to="/messages">View your messages</Link>
