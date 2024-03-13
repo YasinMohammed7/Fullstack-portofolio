@@ -14,9 +14,11 @@ const Contact = () => {
           <Link to="/messages">View your messages</Link>
         </p>
 
-        <p>
-          <Link to="/users">View User Settings</Link>
-        </p>
+        {isAdmin && (
+          <p>
+            <Link to="/users">View User Settings</Link>
+          </p>
+        )}
 
         <p>
           <Link to="/users/new">Add new user</Link>

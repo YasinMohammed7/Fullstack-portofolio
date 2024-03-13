@@ -29,7 +29,7 @@ const MessagesList = () => {
       : null;
 
     content = (
-      <table className="table table--messages">
+      <table className="table--messages">
         <thead className="table__thead">
           <tr>
             <th scope="col" className="table__th message__username">

@@ -41,12 +41,8 @@ const User = ({ userId }) => {
             <MdEdit />
           </button>
         </td>
-        <td className={`table__cell`}>
-          {created === "Invalid Date" ? "" : created}
-        </td>
-        <td className={`table__cell`}>
-          {updated === "Invalid Date" ? "" : updated}
-        </td>
+        <td className={`table__cell`}>{created}</td>
+        <td className={`table__cell`}>{updated}</td>
       </tr>
     );
   } else return null;

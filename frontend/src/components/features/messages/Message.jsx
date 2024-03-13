@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 import { useGetMessagesQuery } from "./messagesApiSlice";
+import useAuth from "../../../hooks/useAuth";
 
 const Message = ({ messageId }) => {
   const { message } = useGetMessagesQuery("messagesList", {
@@ -9,6 +10,8 @@ const Message = ({ messageId }) => {
       message: data?.entities[messageId],
     }),
   });
+
+  const { username } = useAuth();
 
   const navigate = useNavigate();
 
@@ -24,6 +27,8 @@ const Message = ({ messageId }) => {
       day: "numeric",
     });
 
+    const isOwner = username === message.user.username;
+
     const handleMessageEdit = () => navigate(`${messageId}`);
 
     return (
@@ -35,9 +40,11 @@ const Message = ({ messageId }) => {
         <td className="table__cell message__updated">{updated}</td>
         <td className="table__cell message__title">{message.content}</td>
         <td className="table__cell">
-          <button className="button" onClick={handleMessageEdit}>
-            <MdEdit />
-          </button>
+          {isOwner && (
+            <button className="button" onClick={handleMessageEdit}>
+              <MdEdit />
+            </button>
+          )}
         </td>
       </tr>
     );

@@ -105,7 +105,7 @@ const NewUserForm = () => {
         onChange={onPasswordChanged}
         required
       />
-
+      {/* 
       <label htmlFor="roles">ASSIGNED ROLES:</label>
       <select
         id="roles"
@@ -118,7 +118,7 @@ const NewUserForm = () => {
         required
       >
         {options}
-      </select>
+      </select> */}
 
       <button className="button" title="Save" disabled={!canSave}>
         Create Account

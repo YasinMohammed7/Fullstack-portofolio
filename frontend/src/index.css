@@ -158,6 +158,18 @@ tr {
   background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
 }
 
+.table--messages {
+  font-size: 1rem;
+  width: 100%;
+  max-width: 1400px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  color: white;
+  gap: 0.1em;
+  margin: auto;
+  background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.05));
+}
+
 .table__button {
   padding: 0.25em;
   font-size: 1.5rem;

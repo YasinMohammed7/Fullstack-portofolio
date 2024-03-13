@@ -53,7 +53,6 @@ const EditUserForm = ({ user }) => {
   };
 
   const onSaveUserClicked = async (e) => {
-    e.preventDefault();
     if (password) {
       await updateUser({ id: user.id, username, password, roles });
     } else {
@@ -127,7 +126,7 @@ const EditUserForm = ({ user }) => {
         onChange={onPasswordChanged}
       />
 
-      <label className="form__label" htmlFor="roles">
+      {/* <label className="form__label" htmlFor="roles">
         ASSIGNED ROLES:
       </label>
       <select
@@ -140,7 +139,7 @@ const EditUserForm = ({ user }) => {
         onChange={onRolesChanged}
       >
         {options}
-      </select>
+      </select> */}
 
       <button
         className="button"

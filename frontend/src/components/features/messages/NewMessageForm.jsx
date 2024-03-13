@@ -13,7 +13,7 @@ const NewMessageForm = ({ username }) => {
   useEffect(() => {
     if (isSuccess) {
       setContent("");
-      navigate("/users");
+      navigate("/messages");
     }
   }, [isSuccess, navigate]);
 
@@ -42,7 +42,7 @@ const NewMessageForm = ({ username }) => {
         rows="10"
       ></textarea>
       <button className="button" disabled={!canSave}>
-        {isLoading ? "Sending" : "Send"}
+        {isLoading ? "Sending..." : "Send"}
       </button>
     </form>
   );

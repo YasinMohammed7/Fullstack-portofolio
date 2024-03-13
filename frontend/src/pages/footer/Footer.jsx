@@ -85,8 +85,7 @@ const Footer = ({ width }) => {
       </footer>
       <p className="copyright">
         &copy; {year} All Rights Reserved. Created by me Current user:{" "}
-        {username}
-        status: {status}
+        {username} status: {status}
       </p>
     </>
   );
