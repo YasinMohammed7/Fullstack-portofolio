@@ -19,6 +19,7 @@ const PersistLogin = () => {
     if (effectRan.current === true || process.env.NODE_ENV !== "development") {
       const verifyRefreshToken = async () => {
         console.log("verifying refresh token");
+        console.log(effectRan);
         try {
           await refresh();
           setTrueSuccess(true);
@@ -44,7 +45,7 @@ const PersistLogin = () => {
     console.log("error");
     content = (
       <p className="errorMsg">
-        {error?.data?.message}
+        {`${error?.data?.message} - `}
         <Link to="/login">Please login again</Link>
       </p>
     );

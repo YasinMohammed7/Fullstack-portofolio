@@ -15,6 +15,8 @@ import NewMessage from "./components/features/messages/NewMessage";
 import Prefetch from "./components/features/auth/Prefetch";
 import Login from "./components/features/auth/Login";
 import PersistLogin from "./components/features/auth/PersistLogin";
+import RequireAuth from "./components/features/auth/RequireAuth";
+import { ROLES } from "./config/roles";
 
 const App = () => {
   const [yearsOfExperience, setYearsOfExperience] = useState(0);
@@ -47,18 +49,24 @@ const App = () => {
         <Route index element={<Home yearsOfExperience={yearsOfExperience} />} />
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
-        <Route path="contact" element={<Contact />} />
-        <Route element={<PersistLogin />}>
-          <Route element={<Prefetch />}>
-            <Route path="users">
-              <Route index element={<UsersList />} />
-              <Route path=":id" element={<EditUser />} />
-              <Route path="new" element={<NewUserForm />} />
-            </Route>
-            <Route path="messages">
-              <Route index element={<MessagesList />} />
-              <Route path=":id" element={<EditMessage />} />
-              <Route path="new" element={<NewMessage />} />
+        <Route path="new" element={<NewUserForm />} />
+        <Route
+          element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
+        >
+          <Route path="contact" element={<Contact />} />
+          <Route element={<PersistLogin />}>
+            <Route element={<Prefetch />}>
+              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+                <Route path="users">
+                  <Route index element={<UsersList />} />
+                  <Route path=":id" element={<EditUser />} />
+                </Route>
+              </Route>
+              <Route path="messages">
+                <Route index element={<MessagesList />} />
+                <Route path=":id" element={<EditMessage />} />
+                <Route path="new" element={<NewMessage />} />
+              </Route>
             </Route>
           </Route>
         </Route>

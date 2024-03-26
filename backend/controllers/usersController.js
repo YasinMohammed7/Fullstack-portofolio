@@ -2,6 +2,7 @@ const { PrismaClient } = require("@prisma/client")
 const prisma = new PrismaClient()
 const bcrypt = require("bcrypt")
 const asyncHandler = require("express-async-handler")
+const jwt = require("jsonwebtoken")
 
 // @desc get all users
 // @route GET /users
@@ -121,6 +122,32 @@ const updateUser = asyncHandler(async (req, res) => {
         where: { id: +id },
         data: updateData
     })
+
+
+    // const accessToken = jwt.sign(
+    //     {
+    //         "UserInfo": {
+    //             "username": updatedUser.username,
+    //             "roles": updatedUser.roles
+    //         }
+    //     },
+    //     process.env.ACCESS_TOKEN_SECRET,
+    //     { expiresIn: "15m" }
+    // )
+
+    // const refreshToken = jwt.sign(
+    //     { "username": updatedUser.username },
+    //     process.env.REFRESH_TOKEN_SECRET,
+    //     { expiresIn: "7d" }
+    // )
+
+    // res.cookie("jwt", refreshToken, {
+    //     httpOnly: true,
+    //     secure: true,
+    //     sameSite: "None",
+    //     maxAge: 7 * 24 * 60 * 60 * 1000
+    // })
+
 
     res.json({ message: `${updatedUser.username} updated` })
 })

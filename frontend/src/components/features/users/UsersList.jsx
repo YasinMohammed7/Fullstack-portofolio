@@ -1,5 +1,6 @@
 import { useGetUsersQuery } from "./usersApiSlice";
 import User from "./User";
+import useAuth from "../../../hooks/useAuth";
 
 const UsersList = () => {
   const {
@@ -14,16 +15,27 @@ const UsersList = () => {
     refetchOnMountOrArgchange: true,
   });
 
+  const { isAdmin, username } = useAuth();
+
   let content;
   if (isLoading) content = <p>Loading...</p>;
   if (isError) content = <p className="errMsg">{error?.data?.message}</p>;
 
   if (isSuccess) {
-    const { ids } = users;
+    const { ids, entities } = users;
 
-    const tableContent = ids?.length
-      ? ids.map((userId) => <User key={userId} userId={userId} />)
-      : null;
+    let filteredIds;
+    if (isAdmin) {
+      filteredIds = [...ids];
+    } else {
+      filteredIds = ids.filter(
+        (userId) => entities[userId].username === username
+      );
+    }
+
+    const tableContent =
+      ids?.length &&
+      filteredIds.map((userId) => <User key={userId} userId={userId} />);
 
     content = (
       <table className="table table--users">

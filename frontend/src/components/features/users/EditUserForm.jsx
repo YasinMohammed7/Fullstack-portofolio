@@ -33,6 +33,7 @@ const EditUserForm = ({ user }) => {
 
   useEffect(() => {
     console.log(isSuccess);
+
     if (isSuccess || isDelSuccess) {
       setUsername("");
       setPassword("");
@@ -52,7 +53,7 @@ const EditUserForm = ({ user }) => {
     setRoles(values);
   };
 
-  const onSaveUserClicked = async (e) => {
+  const onSaveUserClicked = async () => {
     if (password) {
       await updateUser({ id: user.id, username, password, roles });
     } else {
@@ -75,9 +76,10 @@ const EditUserForm = ({ user }) => {
   let canSave;
   if (password) {
     canSave =
-      [roles.length, validUsername, validPassword].every(Boolean) && !isLoading;
+      [/*roles.length*/ validUsername, validPassword].every(Boolean) &&
+      !isLoading;
   } else {
-    canSave = [roles.length, validUsername].every(Boolean) && !isLoading;
+    canSave = [/*roles.length*/ validUsername].every(Boolean) && !isLoading;
   }
 
   const validUserClass = !validUsername ? "form__input--incomplete" : "";

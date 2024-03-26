@@ -127,15 +127,18 @@ img {
     color: $text-color-heading;
     border-radius: 10px;
     border: none;
-    outline: none;
     transition: 0.3s;
     font-size: 18px;
     cursor: pointer;
 
-    &:hover {
+    &:hover:not([disabled]) {
         background-color: $text-color-heading;
         color: $background-color;
     }
+}
+
+.button:disabled {
+    opacity: 0.4;
 }
 
 .nowrap {
@@ -203,11 +206,4 @@ tr {
 
 .table__cell--inactive {
     background-color: lightgray;
-}
-
-// Form 
-
-.form__input--incomplete {
-    border: 1px solid #f00;
-    outline: 1px solid #f00;
 }

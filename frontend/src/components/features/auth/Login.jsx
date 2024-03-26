@@ -101,6 +101,10 @@ const Login = () => {
       </label>
 
       <button className="button">Sign in</button>
+      <p>Or</p>
+      <button className="button" onClick={() => navigate("/new")}>
+        Sign Up
+      </button>
     </form>
   );
 
