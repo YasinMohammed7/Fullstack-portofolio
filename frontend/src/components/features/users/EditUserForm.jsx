@@ -45,14 +45,6 @@ const EditUserForm = ({ user }) => {
   const onUsernameChanged = (e) => setUsername(e.target.value);
   const onPasswordChanged = (e) => setPassword(e.target.value);
 
-  const onRolesChanged = (e) => {
-    const values = Array.from(
-      e.target.selectedOptions,
-      (option) => option.value
-    );
-    setRoles(values);
-  };
-
   const onSaveUserClicked = async () => {
     if (password) {
       await updateUser({ id: user.id, username, password, roles });
@@ -76,18 +68,10 @@ const EditUserForm = ({ user }) => {
   let canSave;
   if (password) {
     canSave =
-      [/*roles.length*/ validUsername, validPassword].every(Boolean) &&
-      !isLoading;
+      [roles.length, validUsername, validPassword].every(Boolean) && !isLoading;
   } else {
-    canSave = [/*roles.length*/ validUsername].every(Boolean) && !isLoading;
+    canSave = [roles.length, validUsername].every(Boolean) && !isLoading;
   }
-
-  const validUserClass = !validUsername ? "form__input--incomplete" : "";
-  const validPwdClass =
-    password && !validPassword ? "form__input--incomplete" : "";
-  const validRolesClass = !Boolean(roles.length)
-    ? "form__input--incomplete"
-    : "";
 
   const errContent = (error?.data?.message || delerror?.data?.message) ?? "";
 
@@ -106,7 +90,6 @@ const EditUserForm = ({ user }) => {
         Username: <span className="nowrap">[3-20 letters]</span>
       </label>
       <input
-        className={` ${validUserClass}`}
         id="username"
         name="username"
         type="text"
@@ -120,28 +103,12 @@ const EditUserForm = ({ user }) => {
         <span className="nowrap">[4-12 chars incl. !@#$%]</span>
       </label>
       <input
-        className={` ${validPwdClass}`}
         id="password"
         name="password"
         type="password"
         value={password}
         onChange={onPasswordChanged}
       />
-
-      {/* <label className="form__label" htmlFor="roles">
-        ASSIGNED ROLES:
-      </label>
-      <select
-        id="roles"
-        name="roles"
-        className={`card ${validRolesClass}`}
-        multiple={true}
-        size="2"
-        value={roles}
-        onChange={onRolesChanged}
-      >
-        {options}
-      </select> */}
 
       <button
         className="button"

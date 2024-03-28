@@ -50,11 +50,13 @@ const App = () => {
         <Route path="about" element={<About />} />
         <Route path="projects" element={<Projects />} />
         <Route path="new" element={<NewUserForm />} />
-        <Route
-          element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
-        >
-          <Route path="contact" element={<Contact />} />
-          <Route element={<PersistLogin />}>
+
+        <Route element={<PersistLogin />}>
+          <Route
+            element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
+          >
+            <Route path="contact" element={<Contact />} />
+
             <Route element={<Prefetch />}>
               <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
                 <Route path="users">

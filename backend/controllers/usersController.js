@@ -42,12 +42,17 @@ const createNewUser = asyncHandler(async (req, res) => {
         return res.status(400).json({ message: "All fields are required" })
     }
 
-    const duplicate = await prisma.user.findUnique({
-        where: { username }
+    const duplicate = await prisma.user.findFirst({
+        where: {
+            username: {
+                equals: username,
+                mode: "insensitive"
+            }
+        }
     })
 
     if (duplicate) {
-        return res.status(409).json({ message: "Duplicate username" })
+        return res.status(409).json({ message: "This username has been taken!" })
     }
 
     // hash password
@@ -94,7 +99,13 @@ const updateUser = asyncHandler(async (req, res) => {
 
     const duplicate = await prisma.user.findFirst({
         where: {
-            username,
+
+            where: {
+                username: {
+                    equals: username,
+                    mode: "insensitive"
+                }
+            },
             NOT: {
                 id: +id
             }
@@ -122,32 +133,6 @@ const updateUser = asyncHandler(async (req, res) => {
         where: { id: +id },
         data: updateData
     })
-
-
-    // const accessToken = jwt.sign(
-    //     {
-    //         "UserInfo": {
-    //             "username": updatedUser.username,
-    //             "roles": updatedUser.roles
-    //         }
-    //     },
-    //     process.env.ACCESS_TOKEN_SECRET,
-    //     { expiresIn: "15m" }
-    // )
-
-    // const refreshToken = jwt.sign(
-    //     { "username": updatedUser.username },
-    //     process.env.REFRESH_TOKEN_SECRET,
-    //     { expiresIn: "7d" }
-    // )
-
-    // res.cookie("jwt", refreshToken, {
-    //     httpOnly: true,
-    //     secure: true,
-    //     sameSite: "None",
-    //     maxAge: 7 * 24 * 60 * 60 * 1000
-    // })
-
 
     res.json({ message: `${updatedUser.username} updated` })
 })

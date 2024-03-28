@@ -19,7 +19,7 @@ const PersistLogin = () => {
     if (effectRan.current === true || process.env.NODE_ENV !== "development") {
       const verifyRefreshToken = async () => {
         console.log("verifying refresh token");
-        console.log(effectRan);
+
         try {
           await refresh();
           setTrueSuccess(true);
@@ -28,7 +28,7 @@ const PersistLogin = () => {
         }
       };
 
-      if (!token && persist) verifyRefreshToken();
+      if (persist && !token) verifyRefreshToken();
     }
 
     return () => (effectRan.current = true);
