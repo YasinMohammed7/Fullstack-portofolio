@@ -1,3 +1,5 @@
+import MessagesList from "../../components/features/messages/MessagesList";
+import NewMessage from "../../components/features/messages/NewMessage";
 import useAuth from "../../hooks/useAuth";
 import styles from "./Contact.module.css";
 import { Link } from "react-router-dom";
@@ -10,19 +12,15 @@ const Contact = () => {
       <div className="welcome card column">
         <h1>{`Welcome, ${username}`}</h1>
 
-        <p>
-          <Link to="/messages">View messages</Link>
-        </p>
+        <NewMessage />
+
+        <MessagesList />
 
         {username && isAdmin && (
           <p>
             <Link to="/users">View User Settings</Link>
           </p>
         )}
-
-        <p>
-          <Link to="/messages/new">Add new message</Link>
-        </p>
       </div>
     </section>
   );

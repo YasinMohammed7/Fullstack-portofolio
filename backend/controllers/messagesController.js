@@ -53,7 +53,7 @@ const createNewMessage = asyncHandler(async (req, res) => {
 
 
     if (message) {
-        return res.status(400).json({ message: "The user already send a message" })
+        return res.status(400).json({ message: "You have already sent a message" })
     }
 
     const newMessage = await prisma.message.create({

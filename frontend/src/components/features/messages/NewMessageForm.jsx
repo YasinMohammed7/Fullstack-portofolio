@@ -1,21 +1,17 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAddNewMessageMutation } from "./messagesApiSlice";
 
 const NewMessageForm = ({ username }) => {
   const [addNewMessage, { isLoading, isSuccess, isError, error }] =
     useAddNewMessageMutation();
 
-  const navigate = useNavigate();
-
   const [content, setContent] = useState("");
 
   useEffect(() => {
     if (isSuccess) {
       setContent("");
-      navigate("/messages");
     }
-  }, [isSuccess, navigate]);
+  }, [isSuccess]);
 
   const onContentChanged = (e) => setContent(e.target.value);
 

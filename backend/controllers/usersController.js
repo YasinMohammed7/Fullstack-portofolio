@@ -99,17 +99,14 @@ const updateUser = asyncHandler(async (req, res) => {
 
     const duplicate = await prisma.user.findFirst({
         where: {
-
-            where: {
-                username: {
-                    equals: username,
-                    mode: "insensitive"
-                }
+            username: {
+                equals: username,
+                mode: "insensitive"
             },
             NOT: {
                 id: +id
             }
-        }
+        },
     });
 
     // Allow updates to the original user 

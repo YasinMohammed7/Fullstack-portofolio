@@ -21,7 +21,7 @@ const EditMessageForm = ({ message }) => {
   useEffect(() => {
     if (isSuccess || isDelsuccess) {
       setContent("");
-      navigate("/messages");
+      navigate("/contact");
     }
   }, [isSuccess, isDelsuccess, navigate]);
 
