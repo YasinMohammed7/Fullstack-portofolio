@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
-import { selectUserById, useGetUsersQuery } from "./usersApiSlice";
-import { useNavigate } from "react-router-dom";
+import { useGetUsersQuery } from "./usersApiSlice";
+import { Link, useNavigate } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 
 const User = ({ userId }) => {
@@ -26,7 +25,7 @@ const User = ({ userId }) => {
     const handleUserEdit = () => navigate(`${userId}`);
     const userRolesString = user.roles.toString().replaceAll(",", ", ");
 
-    return (
+    const content = (
       <tr className="table__row user">
         <td className={`table__cell`}>{user.username}</td>
         <td className={`table__cell`}>{userRolesString}</td>
@@ -37,14 +36,16 @@ const User = ({ userId }) => {
         </td>
         <td className={`table__cell`}>{user.message?.content}</td>
         <td className={`table__cell`}>
-          <button className="button">
+          <Link to={`/messages/${user.message?.id}`} className="button">
             <MdEdit />
-          </button>
+          </Link>
         </td>
         <td className={`table__cell`}>{created}</td>
         <td className={`table__cell`}>{updated}</td>
       </tr>
     );
+
+    return content;
   } else return null;
 };
 

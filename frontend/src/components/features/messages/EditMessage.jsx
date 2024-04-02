@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { selectMessageById, useGetMessagesQuery } from "./messagesApiSlice";
+import { useGetMessagesQuery } from "./messagesApiSlice";
 import EditMessageForm from "./EditMessageForm";
 
 const EditMessage = () => {

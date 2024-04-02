@@ -60,14 +60,17 @@ const App = () => {
           >
             <Route path="contact" element={<Contact />} />
             <Route element={<Prefetch />}>
-              <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+              <Route
+                element={
+                  <RequireAuth allowedRoles={[...Object.values(ROLES)]} />
+                }
+              >
                 <Route path="users">
                   <Route index element={<UsersList />} />
                   <Route path=":id" element={<EditUser />} />
                 </Route>
               </Route>
               <Route path="messages">
-                <Route index element={<MessagesList />} />
                 <Route path=":id" element={<EditMessage />} />
                 <Route path="new" element={<NewMessage />} />
               </Route>

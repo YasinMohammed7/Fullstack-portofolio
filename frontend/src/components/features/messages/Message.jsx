@@ -1,4 +1,4 @@
-import { useNavigate, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { MdEdit } from "react-icons/md";
 import { useGetMessagesQuery } from "./messagesApiSlice";
 import useAuth from "../../../hooks/useAuth";
@@ -11,8 +11,6 @@ const Message = ({ messageId }) => {
   });
 
   const { username } = useAuth();
-
-  const navigate = useNavigate();
 
   if (message) {
     const created = new Date(message.createdAt).toLocaleString("en-GB", {
@@ -27,8 +25,6 @@ const Message = ({ messageId }) => {
     });
 
     const isOwner = username === message.user.username;
-
-    const handleMessageEdit = () => navigate(`messages/${messageId}`);
 
     return (
       <tr className="table__row">

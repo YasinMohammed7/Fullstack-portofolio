@@ -16,6 +16,7 @@ const getAllUsers = asyncHandler(async (req, res) => {
             roles: true,
             message: {
                 select: {
+                    id: true,
                     content: true,
                     createdAt: true,
                     updatedAt: true
