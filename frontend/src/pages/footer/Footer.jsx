@@ -6,7 +6,6 @@ import { AiOutlineLinkedin } from "react-icons/ai";
 import { FiGithub } from "react-icons/fi";
 import "./footer.scss";
 import FooterList from "../../components/FooterList";
-import useAuth from "../../hooks/useAuth";
 
 const footerLists = {
   firstList: [
@@ -54,8 +53,6 @@ const Footer = ({ width }) => {
     contactInfo: false,
   });
 
-  const { username, status } = useAuth();
-
   const year = new Date().getFullYear();
 
   const handleClick = (listName) => {
@@ -83,10 +80,7 @@ const Footer = ({ width }) => {
           items={footerLists.secondList}
         />
       </footer>
-      <p className="copyright">
-        &copy; {year} All Rights Reserved. Created by me Current user:{" "}
-        {username} status: {status}
-      </p>
+      <p className="copyright">&copy; {year} All Rights Reserved.</p>
     </>
   );
 };

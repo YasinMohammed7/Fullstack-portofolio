@@ -18,7 +18,7 @@ const Contact = () => {
   return (
     <section className={styles.section}>
       <div className="welcome card column">
-        <h1>{`Welcome, ${username}`}</h1>
+        <h1>{`Welcome, ${username}`}!</h1>
 
         {!userMessage && <NewMessage />}
 

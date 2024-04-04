@@ -26,7 +26,7 @@ const NewMessageForm = ({ username }) => {
 
   return (
     <form onSubmit={onSaveMessageClicked}>
-      {isError && <p className="errmsg">{error?.data?.message}</p>}
+      {isError && <p className="errMsg">{error?.data?.message}</p>}
       <label htmlFor="content">Send a message: </label>
       <textarea
         value={content}

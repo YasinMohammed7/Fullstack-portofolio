@@ -14,8 +14,6 @@ const NewUserForm = () => {
 
   const navigate = useNavigate();
 
-  const userRef = useRef();
-
   const [username, setUsername] = useState("");
   const [validUsername, setValidUsername] = useState(false);
   const [usernameFocus, setUsernameFocus] = useState(false);
@@ -29,10 +27,6 @@ const NewUserForm = () => {
   const [matchFocus, setMatchFocus] = useState(false);
 
   const [roles, setRoles] = useState(["User"]);
-
-  useEffect(() => {
-    userRef.current.focus();
-  }, []);
 
   useEffect(() => {
     setValidUsername(USER_REGEX.test(username));
@@ -69,22 +63,21 @@ const NewUserForm = () => {
 
   const content = (
     <form className={`card column ${styles.form}`} onSubmit={onSaveUserClicked}>
-      {isError && (
-        <p aria-live="assertive" className="errorMsg">
-          {error?.data?.message}
-        </p>
-      )}
       <legend>
         <h2>
           Lets work <span>together</span>
         </h2>
       </legend>
+      {isError && (
+        <p aria-live="assertive" className="errMsg">
+          {error?.data?.message}
+        </p>
+      )}
       <label htmlFor="username">
         Username: {validUsername && <FaCheck />}
         {!validUsername && username && <FaTimes />}
       </label>
       <input
-        ref={userRef}
         id="username"
         name="username"
         type="text"

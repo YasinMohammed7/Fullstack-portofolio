@@ -147,9 +147,10 @@ img {
 
 .errMsg {
     display: inline-block;
-    background-color: white;
-    color: firebrick;
-    padding: 0.25em;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: red;
+    color: white;
     margin-bottom: 0.5em;
 }
 

@@ -36,12 +36,14 @@ const User = ({ userId }) => {
         </td>
         <td className={`table__cell`}>{user.message?.content}</td>
         <td className={`table__cell`}>
-          <Link to={`/messages/${user.message?.id}`} className="button">
-            <MdEdit />
-          </Link>
+          {user.message && (
+            <Link to={`/messages/${user.message?.id}`} className="button">
+              <MdEdit />
+            </Link>
+          )}
         </td>
-        <td className={`table__cell`}>{created}</td>
-        <td className={`table__cell`}>{updated}</td>
+        <td className={`table__cell`}>{user.message && created}</td>
+        <td className={`table__cell`}>{user.message && updated}</td>
       </tr>
     );
 
